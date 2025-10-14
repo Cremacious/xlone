@@ -13,7 +13,15 @@ import { formatPostDate } from '../../utils/date';
 
 const Post = ({ post }) => {
   const [comment, setComment] = useState('');
-  const { data: authUser } = useQuery({ queryKey: ['authUser'] });
+  const { data: authUser } = useQuery({
+    queryKey: ['authUser'],
+    queryFn: async () => {
+      const res = await fetch('/api/auth/profile');
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to fetch user');
+      return data;
+    },
+  });
   const queryClient = useQueryClient();
   const postOwner = post.user;
   const isLiked = post.likes.includes(authUser._id);
