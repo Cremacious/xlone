@@ -1,4 +1,4 @@
-# XLone
+# Xlone
 
 Xlone is a full-stack clone of the social media website X (formerly Twitter). It allows users to sign up, log in, create posts, follow/unfollow other users, update their profiles, and interact with a modern social feed.
 
